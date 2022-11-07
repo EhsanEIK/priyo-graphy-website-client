@@ -1,9 +1,12 @@
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.jpg';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <Navbar
             fluid={true}
@@ -21,18 +24,23 @@ const Header = () => {
                     </span>
                 </Navbar.Brand>
             </Link>
-            <div className="flex md:order-2">
+            <div className="flex items-center md:order-2">
+                <div className='mr-5'>
+                    {
+                        user?.email ? <p className='bg-gray-200 rounded-lg px-3 py-1'>Welcome, {user?.email}</p> : ''
+                    }
+                </div>
                 <Dropdown
                     arrowIcon={false}
                     inline={true}
-                    label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
+                    label={<Avatar alt="User settings" img={user?.photoURL} rounded={true} />}
                 >
                     <Dropdown.Header>
                         <span className="block text-sm">
-                            Bonnie Green
+                            {user?.displayName}
                         </span>
                         <span className="block truncate text-sm font-medium">
-                            name@flowbite.com
+                            {user?.email}
                         </span>
                     </Dropdown.Header>
                     <Dropdown.Item>
@@ -69,8 +77,16 @@ const Header = () => {
                 <Navbar.Link href="/navbars">
                     Contact
                 </Navbar.Link>
-                <Link to='/signin'>Sign In</Link>
-                <Link to='/signup'>Sign Up</Link>
+                {
+                    user?.email ? <>
+                        <Link>Sign Out</Link>
+                    </>
+                        :
+                        <>
+                            <Link to='/signin'>Sign In</Link>
+                            <Link to='/signup'>Sign Up</Link>
+                        </>
+                }
             </Navbar.Collapse>
         </Navbar>
 
