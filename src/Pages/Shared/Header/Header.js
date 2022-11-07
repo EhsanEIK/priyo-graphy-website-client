@@ -1,5 +1,6 @@
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.jpg';
 
 const Header = () => {
@@ -8,16 +9,18 @@ const Header = () => {
             fluid={true}
             rounded={true}
         >
-            <Navbar.Brand href="https://flowbite.com/">
-                <img
-                    src={logo}
-                    className="mr-3 h-6 sm:h-9"
-                    alt="Flowbite Logo"
-                />
-                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                    Priyo-Graphy
-                </span>
-            </Navbar.Brand>
+            <Link to='/'>
+                <Navbar.Brand>
+                    <img
+                        src={logo}
+                        className="mr-3 h-6 sm:h-9"
+                        alt="Flowbite Logo"
+                    />
+                    <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+                        Priyo-Graphy
+                    </span>
+                </Navbar.Brand>
+            </Link>
             <div className="flex md:order-2">
                 <Dropdown
                     arrowIcon={false}
@@ -51,7 +54,6 @@ const Header = () => {
             <Navbar.Collapse>
                 <Navbar.Link
                     href="/navbars"
-                    active={true}
                 >
                     Home
                 </Navbar.Link>
@@ -67,6 +69,7 @@ const Header = () => {
                 <Navbar.Link href="/navbars">
                     Contact
                 </Navbar.Link>
+                <Link to='/signin'>Sign In</Link>
             </Navbar.Collapse>
         </Navbar>
 
