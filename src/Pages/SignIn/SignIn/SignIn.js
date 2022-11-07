@@ -51,7 +51,7 @@ const SignIn = () => {
 
                     <span className="mx-2">Sign in with Google</span>
                 </Button>
-                <p className='text-sm text-center text-gray-500'>Don't have an account?<Link className='hover:underline hover:text-orange-500 ml-1'>Sign up</Link></p>
+                <p className='text-sm text-center text-gray-500'>Don't have an account?<Link to='/signup' className='hover:underline hover:text-orange-500 ml-1'>Sign up</Link></p>
             </form>
         </div>
     );

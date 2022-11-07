@@ -70,6 +70,7 @@ const Header = () => {
                     Contact
                 </Navbar.Link>
                 <Link to='/signin'>Sign In</Link>
+                <Link to='/signup'>Sign Up</Link>
             </Navbar.Collapse>
         </Navbar>
 
