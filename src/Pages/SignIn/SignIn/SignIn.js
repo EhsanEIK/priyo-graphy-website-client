@@ -1,11 +1,37 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const SignIn = () => {
+    const { signIn } = useContext(AuthContext);
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+
+    const handleSignIn = event => {
+        event.preventDefault();
+        setErrorMsg('');
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+            .then(result => {
+                toast.success("Sign in successfully");
+                form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => setErrorMsg(error.message));
+    }
+
     return (
         <div className='w-1/4 mx-auto'>
-            <form className="flex flex-col border border-gray-200 rounded-lg shadow-lg p-10 gap-4">
+            <form onSubmit={handleSignIn} className="flex flex-col border border-gray-200 rounded-lg shadow-lg p-10 gap-4">
                 <h1 className='text-3xl font-bold text-center mb-5'>Sign In</h1>
                 <div>
                     <div className="mb-2 block">
@@ -52,6 +78,7 @@ const SignIn = () => {
                     <span className="mx-2">Sign in with Google</span>
                 </Button>
                 <p className='text-sm text-center text-gray-500'>Don't have an account?<Link to='/signup' className='hover:underline hover:text-orange-500 ml-1'>Sign up</Link></p>
+                <p className='text-red-600 text-xl text-center'>{errorMsg}</p>
             </form>
         </div>
     );
