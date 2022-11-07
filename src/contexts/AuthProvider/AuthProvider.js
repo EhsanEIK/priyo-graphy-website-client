@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firbase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 export const AuthContext = createContext();
 const auth = getAuth(app)
@@ -21,6 +21,12 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+    // sign out
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth);
+    }
+
     // get signed in user
     useEffect(() => {
         onAuthStateChanged(auth, currentUser => {
@@ -29,11 +35,13 @@ const AuthProvider = ({ children }) => {
         })
     }, [])
 
+
     const authInfo = {
         user,
         loading,
         createUser,
         signIn,
+        logOut,
     };
 
     return (

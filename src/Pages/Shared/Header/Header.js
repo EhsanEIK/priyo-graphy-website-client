@@ -1,12 +1,18 @@
-import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
+import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.jpg';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
+    const handleSignOut = () => {
+        logOut()
+            .then(() => toast.success('Sign out successfully'))
+            .catch(error => console.error(error.message));
+    }
     return (
         <Navbar
             fluid={true}
@@ -79,7 +85,7 @@ const Header = () => {
                 </Navbar.Link>
                 {
                     user?.email ? <>
-                        <Link>Sign Out</Link>
+                        <Link onClick={handleSignOut}>Sign Out</Link>
                     </>
                         :
                         <>
