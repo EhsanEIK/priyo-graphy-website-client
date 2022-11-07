@@ -59,9 +59,12 @@ const Header = () => {
                         Earnings
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item>
-                        Sign out
-                    </Dropdown.Item>
+                    {
+                        user?.email ?
+                            <Dropdown.Item onClick={handleSignOut}>
+                                Sign out
+                            </Dropdown.Item> : ''
+                    }
                 </Dropdown>
                 <Navbar.Toggle />
             </div>
@@ -84,9 +87,7 @@ const Header = () => {
                     Contact
                 </Navbar.Link>
                 {
-                    user?.email ? <>
-                        <Link onClick={handleSignOut}>Sign Out</Link>
-                    </>
+                    user?.email ? ''
                         :
                         <>
                             <Link to='/signin'>Sign In</Link>

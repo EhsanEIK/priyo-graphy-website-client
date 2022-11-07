@@ -78,7 +78,7 @@ const SignUp = () => {
                     Sign up
                 </Button>
                 <p className='text-sm text-center text-gray-500'>Already have an account?<Link to='/signin' className='hover:underline hover:text-orange-500 ml-1'>Sign in</Link></p>
-                <p className='text-red-600 text-xl text-center'>{errorMsg}</p>
+                <p className='text-red-600 text-lg text-center'>{errorMsg}</p>
             </form>
         </div>
     );
