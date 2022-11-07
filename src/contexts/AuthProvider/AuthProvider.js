@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firbase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 
 export const AuthContext = createContext();
 const auth = getAuth(app)
@@ -19,6 +19,12 @@ const AuthProvider = ({ children }) => {
     const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    // social media sign in
+    const socialMediaSignIn = provider => {
+        setLoading(true);
+        return signInWithPopup(auth, provider);
     }
 
     // sign out
@@ -41,6 +47,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         signIn,
+        socialMediaSignIn,
         logOut,
     };
 

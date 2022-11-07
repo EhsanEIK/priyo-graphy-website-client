@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -5,8 +6,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const SignIn = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, socialMediaSignIn } = useContext(AuthContext);
     const [errorMsg, setErrorMsg] = useState('');
+
+    const googleProvider = new GoogleAuthProvider();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -24,6 +27,17 @@ const SignIn = () => {
             .then(result => {
                 toast.success("Sign in successfully");
                 form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => setErrorMsg(error.message));
+    }
+
+    const handleGoogleSignIn = () => {
+        setErrorMsg('');
+
+        socialMediaSignIn(googleProvider)
+            .then(result => {
+                toast.success('User sign in successfully')
                 navigate(from, { replace: true });
             })
             .catch(error => setErrorMsg(error.message));
@@ -66,8 +80,9 @@ const SignIn = () => {
                 <Button type="submit">
                     Sign in
                 </Button>
+
                 <small className='text-xs text-center text-gray-500'>social media sign in</small>
-                <Button color="light">
+                <Button onClick={handleGoogleSignIn} color="light">
                     <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                         <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
                         <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00" />
