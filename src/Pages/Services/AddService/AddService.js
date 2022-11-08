@@ -12,7 +12,7 @@ const AddService = () => {
         const rating = form.rating.value;
         const description = form.description.value;
 
-        const service = { name, price, photoURL, rating, description };
+        const service = { name, price, image: photoURL, rating, description };
 
         fetch('http://localhost:5000/services', {
             method: "POST",
