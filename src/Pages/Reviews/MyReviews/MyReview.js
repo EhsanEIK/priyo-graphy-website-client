@@ -1,5 +1,6 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyReview = ({ myReview, handleDeleteMyReview }) => {
     const { _id, userName, userPhoto, reviewText, rating } = myReview;
@@ -23,11 +24,13 @@ const MyReview = ({ myReview, handleDeleteMyReview }) => {
                     </span>
                     <p className='mt-5'>{reviewText}</p>
                     <div className="mt-4 flex space-x-3 lg:mt-6">
-                        <button
-                            className="w-20 rounded-lg bg-teal-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                            Edit
-                        </button>
+                        <Link to={`/reviews/${_id}`}>
+                            <button
+                                className="w-20 rounded-lg bg-teal-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                Edit
+                            </button>
+                        </Link>
                         <button onClick={() => handleDeleteMyReview(_id)}
                             className="w-20 rounded-lg border border-gray-300 bg-red-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                         >
