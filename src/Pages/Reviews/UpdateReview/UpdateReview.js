@@ -1,42 +1,39 @@
 import { Button, Label, Textarea, TextInput } from 'flowbite-react';
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const UpdateReview = () => {
     const review = useLoaderData();
-    const { reviewText, rating } = review;
+    const { _id, reviewText, rating } = review;
 
-    // handler for saving the review into the database
+    const navigate = useNavigate();
+
+    // handler for updating the review into the database
     const handleUpdateReview = event => {
         event.preventDefault();
         const form = event.target;
         const reviewText = form.reviewText.value;
         const rating = form.rating.value;
-        const date = new Date();
-        // const review = {
-        //     serviceId: _id,
-        //     userEmail: user?.email,
-        //     userName: user?.displayName,
-        //     userPhoto: user?.photoURL,
-        //     reviewText,
-        //     rating,
-        //     date,
-        // }
+        const review = {
+            reviewText,
+            rating,
+        }
 
-        // fetch('http://localhost:5000/reviews', {
-        //     method: "POST",
-        //     headers: {
-        //         'content-type': 'application/json',
-        //     },
-        //     body: JSON.stringify(review),
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.acknowledged) {
-        //             toast.success('Review Added Successfully');
-        //             form.reset();
-        //         }
-        //     })
+        fetch(`http://localhost:5000/reviews/${_id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(review),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Review Updated Successfully');
+                    navigate('/myReviews');
+                }
+            })
     }
 
     return (
