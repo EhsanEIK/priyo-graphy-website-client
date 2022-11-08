@@ -1,6 +1,7 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import AddReview from '../../Reviews/AddReview/AddReview';
 
 const ServiceDetails = () => {
     const serviceDetails = useLoaderData();
@@ -28,6 +29,11 @@ const ServiceDetails = () => {
                     </span>
                 </div>
             </Card>
+
+            <div className='mt-20'>
+                <h1 className='text-5xl text-center font-bold mt-10 mb-16'>Reviews</h1>
+                <AddReview></AddReview>
+            </div>
         </div>
     );
 };
