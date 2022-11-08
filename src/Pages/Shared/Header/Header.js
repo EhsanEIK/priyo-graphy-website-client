@@ -18,17 +18,15 @@ const Header = () => {
             fluid={true}
             rounded={true}
         >
-            <Link to='/'>
-                <Navbar.Brand>
-                    <img
-                        src={logo}
-                        className="mr-3 h-6 sm:h-9"
-                        alt="Flowbite Logo"
-                    />
-                    <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                        Priyo-Graphy
-                    </span>
-                </Navbar.Brand>
+            <Link to='/' className='flex'>
+                <img
+                    src={logo}
+                    className="mr-3 h-6 sm:h-9"
+                    alt="Flowbite Logo"
+                />
+                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+                    Priyo-Graphy
+                </span>
             </Link>
             <div className="flex items-center md:order-2">
                 <div className='mr-5'>
