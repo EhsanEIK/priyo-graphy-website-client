@@ -1,9 +1,17 @@
 import { Card } from 'flowbite-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const MyReview = ({ myReview, handleDeleteMyReview }) => {
-    const { _id, userName, userPhoto, reviewText, rating } = myReview;
+    const { _id, serviceId, userName, userPhoto, reviewText, rating } = myReview;
+
+    // get the service data using serviceId from backend
+    const [service, setService] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/services/${serviceId}`)
+            .then(res => res.json())
+            .then(data => setService(data));
+    }, [])
 
     return (
         <div className="max-w-sm">
@@ -19,10 +27,12 @@ const MyReview = ({ myReview, handleDeleteMyReview }) => {
                     <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                         {userName}
                     </h5>
+                    <p className='my-2'>
+                        <span className='font-bold'>Service Name:</span> {service?.name}</p>
                     <span className="text-sm text-gray-500 dark:text-gray-400">
                         Rating: {rating}
                     </span>
-                    <p className='mt-5'>{reviewText}</p>
+                    <p className='italic mt-3'>{reviewText}</p>
                     <div className="mt-4 flex space-x-3 lg:mt-6">
                         <Link to={`/reviews/${_id}`}>
                             <button
