@@ -84,7 +84,7 @@ const Header = () => {
                 </Navbar.Link>
                 {
                     user?.email ? <>
-                        <Link>My Reviews</Link>
+                        <Link to='/myReviews'>My Reviews</Link>
                         <Link to='/addService'>Add Service</Link>
                         <Link onClick={handleSignOut}>Sign Out</Link>
                     </>

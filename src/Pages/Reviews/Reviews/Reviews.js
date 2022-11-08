@@ -3,7 +3,6 @@ import Review from './Review';
 
 const Reviews = ({ service }) => {
     const { _id } = service;
-    console.log(_id)
 
     const [reviews, setReviews] = useState([]);
     useEffect(() => {

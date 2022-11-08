@@ -51,7 +51,7 @@ const ServiceDetails = () => {
                                 className='underline'> login</Link> to add a review</p>
                 }
 
-                {/* display all the reviews of this service */}
+                {/* displayed all the reviews of this service */}
                 <div className='mt-10'>
                     <Reviews
                         service={serviceDetails}></Reviews>
