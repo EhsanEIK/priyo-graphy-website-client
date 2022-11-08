@@ -1,11 +1,13 @@
 import { Button, Label, Textarea, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const AddReview = ({ service }) => {
     const { user } = useContext(AuthContext);
-    const { _id, name } = service;
+    const { _id } = service;
 
+    // handler for saving the review into the database
     const handleAddReview = event => {
         event.preventDefault();
         const form = event.target;
@@ -13,14 +15,28 @@ const AddReview = ({ service }) => {
         const rating = form.rating.value;
         const review = {
             serviceId: _id,
-            serviceName: name,
             userEmail: user?.email,
             userName: user?.displayName,
+            userPhoto: user?.photoURL,
             reviewText,
             rating,
         }
-        console.log(review);
+        fetch('http://localhost:5000/reviews', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(review),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Review Added Successfully');
+                    form.reset();
+                }
+            })
     }
+
     return (
         <div className='md:w-2/5 md:mx-auto mx-5'>
             <form onSubmit={handleAddReview} className="flex flex-col gap-4">

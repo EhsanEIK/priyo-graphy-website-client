@@ -1,14 +1,15 @@
 import { Card } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { Link, Navigate, useLoaderData, useLocation } from 'react-router-dom';
+import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import AddReview from '../../Reviews/AddReview/AddReview';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext);
     const serviceDetails = useLoaderData();
-    const { _id, name, image, price, rating, description } = serviceDetails;
+    const { name, image, price, rating, description } = serviceDetails;
 
+    //  using location to send the location state to signin
     const location = useLocation();
 
     return (
