@@ -42,6 +42,21 @@ const Blogs = () => {
                     </span>
                 </p>
             </div>
+            {/* blog-03 */}
+            <div className='bg-gray-100 rounded-lg p-10 m-10'>
+                <h1 className='text-3xl mb-4'>3. What is the difference between JavaScript and NodeJS?</h1>
+                <p>
+                    <span>
+                        <span className='italic font-bold mr-2'>JavaScript:</span>
+                        Javascript is a programming language that is used for writing scripts on the website. Javascript can only be run in the browsers. It is basically used on the client-side. Javascript is capable enough to add HTML and play with the DOM. Javascript is used in frontend development. Javascript can run in any browser engine as like JS core in safari and Spidermonkey in Firefox. Some of the javascript frameworks are RamdaJS, TypedJS, etc. It is the upgraded version of ECMA script that uses Chrome’s V8 engine written in C++.
+                    </span>
+                    <br /><br />
+                    <span>
+                        <span className='italic font-bold mr-2'>NodeJS:</span>
+                        NodeJS is a Javascript runtime environment. We can run Javascript outside the browser with the help of NodeJS. It is mostly used on the server-side. Nodejs does not have capability to add HTML tags. Nodejs is used in server-side development. V8 is the Javascript engine inside of node.js that parses and runs Javascript. Some of the Nodejs modules are Lodash, express etc. Nodejs is written in C, C++ and Javascript.
+                    </span>
+                </p>
+            </div>
         </div>
     );
 };
