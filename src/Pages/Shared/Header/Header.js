@@ -68,23 +68,24 @@ const Header = () => {
             </div>
             <Navbar.Collapse>
                 <Navbar.Link
-                    href="/navbars"
+                    href="/"
                 >
                     Home
                 </Navbar.Link>
-                <Navbar.Link href="/navbars">
+                <Navbar.Link href="/">
                     About
                 </Navbar.Link>
-                <Navbar.Link href="/navbars">
+                <Navbar.Link href="/">
                     Pricing
                 </Navbar.Link>
-                <Navbar.Link href="/navbars">
+                <Navbar.Link href="/">
                     Contact
                 </Navbar.Link>
                 {
                     user?.email ? <>
                         <Link>My Reviews</Link>
                         <Link to='/addService'>Add Service</Link>
+                        <Link onClick={handleSignOut}>Sign Out</Link>
                     </>
                         :
                         <>
