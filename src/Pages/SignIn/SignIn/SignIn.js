@@ -44,7 +44,7 @@ const SignIn = () => {
     }
 
     return (
-        <div className='w-1/4 mx-auto'>
+        <div className='md:w-1/4 md:mx-auto mx-5'>
             <form onSubmit={handleSignIn} className="flex flex-col border border-gray-200 rounded-lg shadow-lg p-10 gap-4">
                 <h1 className='text-3xl font-bold text-center mb-5'>Sign In</h1>
                 <div>

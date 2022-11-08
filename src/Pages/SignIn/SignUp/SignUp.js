@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const [errorMsg, setErrorMsg] = useState('');
 
     const handleSignUp = event => {
@@ -16,17 +16,32 @@ const SignUp = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const imageURL = form.imageURL.value;
 
         createUser(email, password)
             .then(result => {
+                hadnleUpdateUserProfile(name, imageURL);
+                console.log(result.user)
                 toast.success("User created successfully");
                 form.reset();
             })
             .catch(error => setErrorMsg(error.message));
     }
 
+    // update user name and photoURL
+    const hadnleUpdateUserProfile = (name, imageURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: imageURL,
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+
+    }
+
     return (
-        <div className='w-1/4 mx-auto'>
+        <div className='md:w-1/4 md:mx-auto mx-5'>
             <form onSubmit={handleSignUp} className="flex flex-col border border-gray-200 rounded-lg shadow-lg p-10 gap-4">
                 <h1 className='text-3xl font-bold text-center mb-5'>Sign Up</h1>
                 <div>
@@ -72,6 +87,20 @@ const SignUp = () => {
                         type="password"
                         placeholder="enter your password"
                         required={true}
+                    />
+                </div>
+                <div>
+                    <div className="mb-2 block">
+                        <Label
+                            htmlFor="imageURL"
+                            value="Your image URL"
+                        />
+                    </div>
+                    <TextInput
+                        id="imageURL"
+                        name="imageURL"
+                        type="text"
+                        placeholder="enter your image URL"
                     />
                 </div>
                 <Button type="submit">
