@@ -9,7 +9,7 @@ const Service = ({ service }) => {
         <div>
             <div className="max-w-sm">
                 <Card>
-                    <img src={image} alt={name} className="h-56 w-full p-0 m-0" />
+                    <img src={image} alt={name} className="h-56 w-full" />
 
                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                         {name}
@@ -66,7 +66,7 @@ const Service = ({ service }) => {
                         <span className="text-3xl font-bold text-gray-900 dark:text-white">
                             ${price}
                         </span>
-                        <Link
+                        <Link to={`/services/${_id}`}
                             className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             View Details

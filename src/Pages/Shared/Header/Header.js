@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import { Avatar, Dropdown, Navbar, Spinner } from 'flowbite-react';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,7 @@ const Header = () => {
             .then(() => toast.success('Sign out successfully'))
             .catch(error => console.error(error.message));
     }
+
     return (
         <Navbar
             fluid={true}
@@ -37,7 +38,7 @@ const Header = () => {
                 <Dropdown
                     arrowIcon={false}
                     inline={true}
-                    label={<Avatar alt="User settings" img={user?.photoURL} rounded={true} />}
+                    label={<Avatar alt="User Profile" img={user?.photoURL} rounded={true} />}
                 >
                     <Dropdown.Header>
                         <span className="block text-sm">
