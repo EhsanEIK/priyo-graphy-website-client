@@ -1,11 +1,15 @@
 import { Card } from 'flowbite-react';
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Navigate, useLoaderData, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import AddReview from '../../Reviews/AddReview/AddReview';
 
 const ServiceDetails = () => {
+    const { user } = useContext(AuthContext);
     const serviceDetails = useLoaderData();
-    const { name, image, price, rating, description } = serviceDetails;
+    const { _id, name, image, price, rating, description } = serviceDetails;
+
+    const location = useLocation();
 
     return (
         <div>
@@ -32,7 +36,14 @@ const ServiceDetails = () => {
 
             <div className='mt-20'>
                 <h1 className='text-5xl text-center font-bold mt-10 mb-16'>Reviews</h1>
-                <AddReview></AddReview>
+                {
+                    user?.email ? <AddReview service={serviceDetails}></AddReview>
+                        : <p className='text-3xl text-center text-red-500'>Please
+                            <Link to='/signin'
+                                state={{ from: location }}
+                                replace
+                                className='underline'> login</Link> to add a review</p>
+                }
             </div>
         </div>
     );

@@ -1,21 +1,40 @@
 import { Button, Label, Textarea, TextInput } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
-const AddReview = () => {
+const AddReview = ({ service }) => {
+    const { user } = useContext(AuthContext);
+    const { _id, name } = service;
+
+    const handleAddReview = event => {
+        event.preventDefault();
+        const form = event.target;
+        const reviewText = form.reviewText.value;
+        const rating = form.rating.value;
+        const review = {
+            serviceId: _id,
+            serviceName: name,
+            userEmail: user?.email,
+            userName: user?.displayName,
+            reviewText,
+            rating,
+        }
+        console.log(review);
+    }
     return (
         <div className='md:w-2/5 md:mx-auto mx-5'>
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleAddReview} className="flex flex-col gap-4">
                 <div>
                     <div className="mb-2 block">
                         <Label
-                            htmlFor="reviewDescription"
-                            value="Your email"
+                            htmlFor="reviewText"
+                            value="Your Review"
                         />
                     </div>
                     <Textarea
-                        id="reviewDescription"
-                        name='reviewDescription'
-                        placeholder="write you review here..."
+                        id="reviewText"
+                        name='reviewText'
+                        placeholder="write your review here..."
                         required={true}
                         rows={4}
                     />
