@@ -76,16 +76,16 @@ const Header = () => {
                     About
                 </Navbar.Link>
                 <Navbar.Link href="/navbars">
-                    Services
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
                     Pricing
                 </Navbar.Link>
                 <Navbar.Link href="/navbars">
                     Contact
                 </Navbar.Link>
                 {
-                    user?.email ? ''
+                    user?.email ? <>
+                        <Link>My Reviews</Link>
+                        <Link to='/addService'>Add Service</Link>
+                    </>
                         :
                         <>
                             <Link to='/signin'>Sign In</Link>
