@@ -68,17 +68,8 @@ const Header = () => {
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>
-                <Navbar.Link
-                    href="/"
-                >
-                    Home
-                </Navbar.Link>
-                <Navbar.Link href="/">
-                    About
-                </Navbar.Link>
-                <Navbar.Link href="/">
-                    Blogs
-                </Navbar.Link>
+                <Link to='/'>Home</Link>
+                <Link to='/blogs'>Blogs</Link>
                 {
                     user?.email ? <>
                         <Link to='/myReviews'>My Reviews</Link>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Service from '../../Services/Services/Service';
 import About from '../About/About';
+import Contact from '../Contact/Contact';
 import Slider from '../Slider/Slider';
 
 const Home = () => {
@@ -17,11 +18,10 @@ const Home = () => {
         <div>
             <Slider></Slider>
             <About></About>
-
             {/* show services data (only 3 service) */}
             <section className='mt-48'>
                 <h1 className="text-3xl text-center font-bold tracking-wide text-gray-800 dark:text-white lg:text-5xl mb-16">
-                    My Services
+                    My Service
                 </h1>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 gap-y-10'>
                     {
@@ -40,6 +40,7 @@ const Home = () => {
                     </Link>
                 </div>
             </section>
+            <Contact></Contact>
         </div>
     );
 };
