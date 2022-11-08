@@ -54,9 +54,6 @@ const Header = () => {
                     <Dropdown.Item>
                         Settings
                     </Dropdown.Item>
-                    <Dropdown.Item>
-                        Earnings
-                    </Dropdown.Item>
                     <Dropdown.Divider />
                     {
                         user?.email ?

@@ -4,7 +4,7 @@ const Blogs = () => {
     return (
         <div className='md:px-0 px-3'>
             {/* blog-01 */}
-            <div className='bg-gray-100 rounded-lg p-10 m-10'>
+            <div className='bg-gray-100 rounded-xl p-10 md:m-10 mt-10'>
                 <h1 className='text-3xl mb-4'>1. Difference between SQL and NoSQL.</h1>
                 <p>
                     <span>
@@ -17,7 +17,7 @@ const Blogs = () => {
                 </p>
             </div>
             {/* blog-02 */}
-            <div className='bg-gray-100 rounded-lg p-10 m-10'>
+            <div className='bg-gray-100 rounded-xl p-10 md:m-10 mt-10'>
                 <h1 className='text-3xl mb-4'>2. What is JWT? and How does it work?</h1>
                 <p>
                     <span>
@@ -43,7 +43,7 @@ const Blogs = () => {
                 </p>
             </div>
             {/* blog-03 */}
-            <div className='bg-gray-100 rounded-lg p-10 m-10'>
+            <div className='bg-gray-100 rounded-xl p-10 md:m-10 mt-10'>
                 <h1 className='text-3xl mb-4'>3. What is the difference between JavaScript and NodeJS?</h1>
                 <p>
                     <span>
@@ -58,7 +58,7 @@ const Blogs = () => {
                 </p>
             </div>
             {/* blog-04 */}
-            <div className='bg-gray-100 rounded-lg p-10 m-10'>
+            <div className='bg-gray-100 rounded-xl p-10 md:m-10 mt-10'>
                 <h1 className='text-3xl mb-4'>4. How does NodeJS handle multiple requests at the same time?</h1>
                 <p>
                     NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them. EventLoop is the listener for the EventQueue.
