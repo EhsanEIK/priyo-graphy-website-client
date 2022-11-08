@@ -13,6 +13,7 @@ const AddReview = ({ service }) => {
         const form = event.target;
         const reviewText = form.reviewText.value;
         const rating = form.rating.value;
+        const date = new Date();
         const review = {
             serviceId: _id,
             userEmail: user?.email,
@@ -20,7 +21,9 @@ const AddReview = ({ service }) => {
             userPhoto: user?.photoURL,
             reviewText,
             rating,
+            date,
         }
+
         fetch('http://localhost:5000/reviews', {
             method: "POST",
             headers: {
