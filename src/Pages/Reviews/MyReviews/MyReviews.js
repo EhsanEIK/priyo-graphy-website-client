@@ -15,7 +15,7 @@ const MyReviews = () => {
     // load the user (my) reviews from database
     const [myReviews, setMyReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://priyo-graphy-server.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('priyo-graphy-token')}`
             }
@@ -39,7 +39,7 @@ const MyReviews = () => {
     const handleDeleteMyReview = id => {
         const agree = window.confirm("Are you sure to delete this review?");
         if (agree) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://priyo-graphy-server.vercel.app/reviews/${id}`, {
                 method: "DELETE",
             })
                 .then(res => res.json())

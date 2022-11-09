@@ -18,7 +18,7 @@ const AddService = () => {
 
         const service = { name, price, image: photoURL, rating, description };
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://priyo-graphy-server.vercel.app/services', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

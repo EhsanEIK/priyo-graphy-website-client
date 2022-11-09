@@ -6,7 +6,7 @@ const Reviews = ({ service }) => {
 
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/services/${_id}`)
+        fetch(`https://priyo-graphy-server.vercel.app/reviews/services/${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data));
     }, [reviews])

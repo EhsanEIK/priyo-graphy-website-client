@@ -32,7 +32,7 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 // get the jwt token and saved it into the local storage
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://priyo-graphy-server.vercel.app/jwt', {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json',

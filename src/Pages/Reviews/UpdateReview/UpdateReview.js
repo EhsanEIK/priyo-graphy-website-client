@@ -24,7 +24,7 @@ const UpdateReview = () => {
             rating,
         }
 
-        fetch(`http://localhost:5000/reviews/${_id}`, {
+        fetch(`https://priyo-graphy-server.vercel.app/reviews/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

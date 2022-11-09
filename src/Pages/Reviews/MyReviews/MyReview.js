@@ -8,7 +8,7 @@ const MyReview = ({ myReview, handleDeleteMyReview }) => {
     // get the service data using serviceId from backend
     const [service, setService] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        fetch(`https://priyo-graphy-server.vercel.app/services/${serviceId}`)
             .then(res => res.json())
             .then(data => setService(data));
     }, [])
