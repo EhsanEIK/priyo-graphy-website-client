@@ -1,7 +1,7 @@
 import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 
@@ -11,6 +11,9 @@ const SignUp = () => {
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const [errorMsg, setErrorMsg] = useState('');
+
+    // navigation setup after successful sign in
+    const navigate = useNavigate();
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -24,10 +27,23 @@ const SignUp = () => {
 
         createUser(email, password)
             .then(result => {
-                hadnleUpdateUserProfile(name, imageURL);
-                console.log(result.user)
-                toast.success("User created successfully");
-                form.reset();
+                const user = result.user;
+                // get the jwt token and saved it into the local storage
+                fetch('https://priyo-graphy-server.vercel.app/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({ currentUserEmail: user?.email }),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('priyo-graphy-token', data.token);
+                        hadnleUpdateUserProfile(name, imageURL);
+                        toast.success("User created successfully");
+                        form.reset();
+                        navigate('/signin');
+                    })
             })
             .catch(error => setErrorMsg(error.message));
     }
