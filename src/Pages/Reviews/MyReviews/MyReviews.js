@@ -8,15 +8,33 @@ const MyReviews = () => {
     // custom title in the website
     useTitle('My Reviews');
 
-    const { user } = useContext(AuthContext);
+    let count = 1;
 
+    const { user, logOut } = useContext(AuthContext);
+
+    // load the user (my) reviews from database
     const [myReviews, setMyReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('priyo-graphy-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    if (count === 1) {
+                        count++;
+                        return logOut()
+                            .then(() => toast.error('unauthorized access, please sign in again'))
+                            .catch(error => console.error(error));
+                    }
+                }
+                return res.json()
+            })
             .then(data => setMyReviews(data));
-    }, [myReviews])
+    }, [])
 
+    // delete handler for deleting user (my) self review
     const handleDeleteMyReview = id => {
         const agree = window.confirm("Are you sure to delete this review?");
         if (agree) {
@@ -39,7 +57,7 @@ const MyReviews = () => {
             <h1 className='md:text-5xl text-3xl text-center font-bold bg-slate-200 rounded-xl shadow-lg md:p-20 p-10 mt-10 mb-16 md:mx-0 mx-3'>My Reviews</h1>
             {
                 myReviews.length === 0 ? <p className='text-3xl text-center text-red-500'>No reviews were added</p>
-                    : <div className='grid grid-cols-3 gap-5 gap-y-10'>
+                    : <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 gap-y-10 md:mx-0 mx-3'>
                         {
                             myReviews.map(myReview => <MyReview
                                 key={myReview._id}
