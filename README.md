@@ -14,3 +14,6 @@
 * When you visit another link/route on this website, it will take you to that page without reloading the site.
 * If user visit protected route(to show the my reviews page) without sign in, the page will redirect the user to the sign in page and after signing in he will get back to the previous existing route, and to access my reviews page user must need to sign in/sign up a new account.
 * Added JWT token features for verifying authorized user.
+* When you click in the service card image, it will show you the full image.
+* In reviews section of service details page, the reviews sorted with date, where you can see the latest reviews first.
+* Added 3 types of social media login option (Google, Facebook, Github).

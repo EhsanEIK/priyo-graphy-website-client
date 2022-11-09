@@ -34,7 +34,7 @@ const Header = () => {
                 <div className="flex items-center md:order-2">
                     <div className='mr-5'>
                         {
-                            user?.email ? <p className='bg-gray-200 rounded-lg px-3 py-1'>Welcome, {user?.email}</p> : ''
+                            user || user?.email ? <p className='bg-gray-200 rounded-lg px-3 py-1'>Welcome, {user?.email || user?.displayName}</p> : ''
                         }
                     </div>
                     <Dropdown
@@ -58,7 +58,7 @@ const Header = () => {
                         </Dropdown.Item>
                         <Dropdown.Divider />
                         {
-                            user?.email ?
+                            user || user?.email ?
                                 <Dropdown.Item onClick={handleSignOut}>
                                     Sign out
                                 </Dropdown.Item> : ''
@@ -70,7 +70,7 @@ const Header = () => {
                     <Link to='/'>Home</Link>
                     <Link to='/blogs'>Blogs</Link>
                     {
-                        user?.email ? <>
+                        user || user?.email ? <>
                             <Link to='/myReviews'>My Reviews</Link>
                             <Link to='/addService'>Add Service</Link>
                             <Link onClick={handleSignOut}>Sign Out</Link>
