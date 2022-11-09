@@ -55,8 +55,21 @@ const SignIn = () => {
 
         socialMediaSignIn(googleProvider)
             .then(result => {
-                toast.success('User sign in successfully')
-                navigate(from, { replace: true });
+                const user = result.user;
+                // get the jwt token and saved it into the local storage
+                fetch('https://priyo-graphy-server.vercel.app/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({ currentUserEmail: user?.email }),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('priyo-graphy-token', data.token);
+                        toast.success('User sign in successfully')
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => setErrorMsg(error.message));
     }
