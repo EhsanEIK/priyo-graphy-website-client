@@ -3,8 +3,12 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const SignUp = () => {
+    // custom title in the website
+    useTitle('Sign Up');
+
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const [errorMsg, setErrorMsg] = useState('');
 

@@ -1,8 +1,13 @@
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Blogs = () => {
+    // custom title in the website
+    useTitle('Blogs');
+
     return (
         <div className='md:px-0 px-3'>
+            <h1 className='md:text-5xl text-3xl text-center font-bold bg-slate-200 rounded-xl shadow-lg md:p-20 p-10 mt-10 mb-16 md:mx-0 mx-3'>All Blogs</h1>
             {/* blog-01 */}
             <div className='bg-gray-100 rounded-xl p-10 md:m-10 mt-10'>
                 <h1 className='text-3xl mb-4'>1. Difference between SQL and NoSQL.</h1>

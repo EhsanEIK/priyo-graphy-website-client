@@ -1,12 +1,16 @@
 import { Button } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 import Service from '../../Services/Services/Service';
 import About from '../About/About';
 import Contact from '../Contact/Contact';
 import Slider from '../Slider/Slider';
 
 const Home = () => {
+    // custom title in the website
+    useTitle('Home');
+
     const [services, setServices] = useState([]);
     useEffect(() => {
         fetch(`http://localhost:5000/services?size=${3}`)
@@ -23,7 +27,7 @@ const Home = () => {
                 <h1 className="text-3xl text-center font-bold tracking-wide text-gray-800 dark:text-white lg:text-5xl mb-16">
                     My Service
                 </h1>
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 gap-y-10'>
+                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 gap-y-10 md:mx-0 mx-3'>
                     {
                         services.map(service => <Service
                             key={service._id}

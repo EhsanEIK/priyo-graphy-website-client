@@ -1,8 +1,12 @@
 import { Button, Label, TextInput } from 'flowbite-react';
 import React from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 
 const AddService = () => {
+    // custom title in the website
+    useTitle('Add New Service');
+
     const handleAddService = event => {
         event.preventDefault();
         const form = event.target;
@@ -31,7 +35,7 @@ const AddService = () => {
             })
     }
     return (
-        <div className='w-2/5 mx-auto'>
+        <div className='md:w-2/5 md:mx-auto mx-5'>
             <h1 className='text-3xl text-center bg-slate-200 rounded-lg mb-5 p-10'>Add New Service</h1>
             <form onSubmit={handleAddService} className="flex flex-col gap-4">
                 {/* service name */}

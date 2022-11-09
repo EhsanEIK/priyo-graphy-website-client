@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar, Spinner } from 'flowbite-react';
+import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -18,6 +18,7 @@ const Header = () => {
         <Navbar
             fluid={true}
             rounded={true}
+            className='container mx-auto shadow-lg'
         >
             <Link to='/' className='flex'>
                 <img
@@ -81,7 +82,6 @@ const Header = () => {
                 }
             </Navbar.Collapse>
         </Navbar>
-
     );
 };
 

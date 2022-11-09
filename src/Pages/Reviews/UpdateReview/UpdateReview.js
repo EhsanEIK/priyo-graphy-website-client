@@ -2,8 +2,12 @@ import { Button, Label, Textarea, TextInput } from 'flowbite-react';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 
 const UpdateReview = () => {
+    // custom title in the website
+    useTitle('Update Review');
+
     const review = useLoaderData();
     const { _id, reviewText, rating } = review;
 
