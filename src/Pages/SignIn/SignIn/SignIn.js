@@ -29,9 +29,21 @@ const SignIn = () => {
 
         signIn(email, password)
             .then(result => {
-                toast.success("Sign in successfully");
-                form.reset();
-                navigate(from, { replace: true });
+                const user = result.user;
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: user?.email }),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('priyo-graphy-token', data.token);
+                        toast.success("Sign in successfully");
+                        form.reset();
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => setErrorMsg(error.message));
     }
@@ -62,7 +74,7 @@ const SignIn = () => {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="your-email@email.com"
+                        placeholder="enter your email"
                         required={true}
                     />
                 </div>
