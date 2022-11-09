@@ -39,15 +39,15 @@ const AuthProvider = ({ children }) => {
         onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            console.log('onauth', loading)
         })
-    }, [])
+    }, [loading])
 
     // update user profile
     const updateUserProfile = profile => {
         setLoading(true);
         return updateProfile(auth.currentUser, profile);
     }
-
 
     const authInfo = {
         user,
