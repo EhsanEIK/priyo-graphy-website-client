@@ -15,6 +15,7 @@ const SignIn = () => {
 
     const googleProvider = new GoogleAuthProvider();
 
+    // navigation setup after successful sign in
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -30,6 +31,7 @@ const SignIn = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
+                // get the jwt token and saved it into the local storage
                 fetch('http://localhost:5000/jwt', {
                     method: "POST",
                     headers: {

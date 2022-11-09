@@ -29,6 +29,7 @@ const AuthProvider = ({ children }) => {
 
     // sign out
     const logOut = () => {
+        localStorage.removeItem('priyo-graphy-token');
         setLoading(true);
         return signOut(auth);
     }
