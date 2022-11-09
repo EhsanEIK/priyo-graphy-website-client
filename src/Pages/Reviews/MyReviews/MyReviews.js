@@ -21,6 +21,7 @@ const MyReviews = () => {
             }
         })
             .then(res => {
+                // jwt verification
                 if (res.status === 401 || res.status === 403) {
                     if (count === 1) {
                         count++;
