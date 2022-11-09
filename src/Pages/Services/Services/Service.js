@@ -1,5 +1,7 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
 const Service = ({ service }) => {
@@ -9,7 +11,12 @@ const Service = ({ service }) => {
         <div>
             <div className="max-w-sm">
                 <Card>
-                    <img src={image} alt={name} className="h-56 w-full" />
+                    <PhotoProvider speed={() => 800}
+                        easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}>
+                        <PhotoView key={_id} src={image}>
+                            <img src={image} alt={name} className="h-56 w-full hover:cursor-pointer" />
+                        </PhotoView>
+                    </PhotoProvider>
 
                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                         {name}
