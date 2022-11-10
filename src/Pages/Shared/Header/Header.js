@@ -68,6 +68,7 @@ const Header = () => {
                 </div>
                 <Navbar.Collapse>
                     <Link to='/'>Home</Link>
+                    <Link to='/services'>Services</Link>
                     <Link to='/blogs'>Blogs</Link>
                     {
                         user || user?.email ? <>
