@@ -37,7 +37,7 @@ const Services = () => {
             </div>
 
             {/* pagination */}
-            <div className="flex justify-center mt-16 mb-10">
+            <div className="flex justify-center items-center mt-16 mb-10">
                 <button onClick={() => page > 0 ? setPage(page - 1) : setPage(page)} className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200">
                     <div className="flex items-center -mx-1">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-1 rtl:-scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,7 +52,7 @@ const Services = () => {
                 <div>
                     {
                         [...Array(pages).keys()].map(number =>
-                            <button key={number} onClick={() => setPage(number)} className="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200">
+                            <button key={number} onClick={() => setPage(number)} className="block px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200">
                                 {number + 1}
                             </button>
                         )
@@ -69,7 +69,7 @@ const Services = () => {
                         </svg>
                     </div>
                 </button>
-                <select onChange={event => setSize(event.target.value)} className="rounded-lg border-1">
+                <select onChange={event => setSize(event.target.value)} className="rounded-lg border-1 md:h-auto h-10">
                     <option value="3">3</option>
                     <option value="5">5</option>
                     <option value="6" selected>6</option>
