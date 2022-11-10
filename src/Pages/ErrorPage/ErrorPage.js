@@ -5,7 +5,7 @@ import errorPageImage from '../../assets/errorPageImage/errorPageImage.jpg';
 
 const ErrorPage = () => {
     return (
-        <div clclassName='h-screen w-screen'>
+        <div className='h-screen w-screen'>
             <img className='h-screen w-screen' src={errorPageImage} alt="errorPageImage" />
             <div className='flex justify-center mb-3'>
                 <Link to='/'>

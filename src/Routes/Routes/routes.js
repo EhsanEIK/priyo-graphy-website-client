@@ -21,11 +21,7 @@ export const router = createBrowserRouter([
             { path: '/', element: <Home></Home> },
             { path: '/home', element: <Home></Home> },
             { path: '/addService', element: <PrivateRoute><AddService></AddService></PrivateRoute> },
-            {
-                path: '/services',
-                loader: () => fetch('https://priyo-graphy-server.vercel.app/services'),
-                element: <Services></Services>
-            },
+            { path: '/services', element: <Services></Services> },
             {
                 path: '/services/:id',
                 loader: ({ params }) => fetch(`https://priyo-graphy-server.vercel.app/services/${params.id}`),

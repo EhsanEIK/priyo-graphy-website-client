@@ -15,7 +15,7 @@ const Home = () => {
     useEffect(() => {
         fetch(`https://priyo-graphy-server.vercel.app/services?size=${3}`)
             .then(res => res.json())
-            .then(data => setServices(data));
+            .then(data => setServices(data.services));
     }, [])
 
     return (

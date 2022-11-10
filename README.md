@@ -17,3 +17,4 @@
 * When you click in the service card image, it will show you the full image.
 * In reviews section of service details page, the reviews sorted with date, where you can see the latest reviews first.
 * Added 3 types of social media login option (Google, Facebook, Github).
+* Added pagination in services page.
